@@ -5,7 +5,6 @@ import debounce from 'lodash.debounce';
 import { countryListMarkup } from './templates/country-list.js';
 import { countryBlankMarkup } from './templates/country-blank.js';
 
-
 const DEBOUNCE_DELAY = 300;
 
 const refs = {
@@ -16,35 +15,33 @@ const refs = {
 
 refs.searchBox.addEventListener(`input`, debounce(onSearch, DEBOUNCE_DELAY));
 
-
 function onSearch(e) {
   // e.preventDefault();
-  
+
   const searchBoxValue = e.target.value.trim();
-    refs.countryList.innerHTML = '';
-    refs.countryInfo.innerHTML = '';
+  refs.countryList.innerHTML = '';
+  refs.countryInfo.innerHTML = '';
   if (!searchBoxValue) return;
-  
 
   fetchCountry(searchBoxValue)
-   .then(data => {
-            if (data.length === 1) {                
-                 const markup = countries.map(country => countryBlankMarkup(country));
-    refs.countryInfo.innerHTML = markup.join('');
-    refs.countryList.innerHTML = '';               
-            };
+    .then(data => {
+      if (data.length === 1) {
+        const markup = data.map(country => countryBlankMarkup(country));
+        refs.countryInfo.innerHTML = markup.join('');
+        refs.countryList.innerHTML = '';
+      }
 
-            if (data.length > 1 && data.length <= 10) {
-                 const markup = countries.map(country => countryListMarkup(country));
-    refs.countryInfo.innerHTML = markup.join('');
-    refs.countryList.innerHTML = ''; 
-            };
+      if (data.length > 1 && data.length <= 10) {
+        const markup = data.map(country => countryListMarkup(country));
+        refs.countryInfo.innerHTML = markup.join('');
+        refs.countryList.innerHTML = '';
+      }
 
-            if (data.length > 10) { 
-                Notify.info("Too many matches found. Please enter a more specific name.");
-            };
-            
-        })
-    .catch(error => Notify.failure(`${error}`))
-    
+      if (data.length > 10) {
+        Notify.info(
+          'Too many matches found. Please enter a more specific name.'
+        );
+      }
+    })
+    .catch(error => Notify.failure(`${error}`));
 }

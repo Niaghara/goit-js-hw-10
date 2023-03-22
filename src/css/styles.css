@@ -12,40 +12,63 @@ body {
   line-height: 1.5;
 }
 
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+p,
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
+
 #search-box {
   font: inherit;
   padding: 8px;
   max-width: 320px;
   margin-bottom: 16px;
+  font-size: 16px;
+  border-radius: 4px;
 }
 
+
 .country-list__item {
-  list-style-type: none;
   display: flex;
   align-items: center;
+  margin-bottom: 10px;
+  max-width: 220px;
+
   font-size: 14px;
   font-weight: 600;
 }
 
 .country-list__image {
-  margin-right: 25px;
-  width: 50px;
+  flex-basis: 15%;
+  margin-right: 10px;
 }
 
 .country-info {
+  max-width: 200px;
   padding: 10px;
- }
+ 
+}
 
 .country-wrapper {
   display: flex;
+  align-items: center;
+  padding: 10px 0;
+  margin-bottom: 10px;
 }
 
 .country-flag-wrapper {
-  flex-basis: 30%;
+  flex-basis: 33%;
 }
 
 .country-name {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
   padding-left: 15px;
 }
@@ -53,12 +76,12 @@ body {
 .country-capital,
 .country-population,
 .country-languages {
-  font-size: 12px;
-  font-weight: 500;
+  font-size: 14px;
+  font-weight: 700;
   margin-bottom: 15px;
 }
 
 .info-text {
-  font-weight: 400;
+  font-weight: 500;
   margin-left: 10px;
 }
