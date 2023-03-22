@@ -5,7 +5,7 @@ function fetchCountry(name) {
       `${COUNTRY_URL}/${name}?fields=name,capital,population,languages,flags`,
     ).then(response => {
         if (!response.ok) {
-            throw new Error("Oops, there is no country with that name");
+            throw new Error (response.status);
           }
           return response.json();
         });
